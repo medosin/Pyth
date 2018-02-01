@@ -1,0 +1,317 @@
+
+
+Method overloading
+
+method overloading
+Several ways to call a method (method overloading)
+In Python you can define a method in such a way that there are multiple ways to call it.
+
+Given a single method or function, we can specify the number of parameters ourself.
+
+Depending on the function definition, it can be called with zero, one, two or more parameters.
+
+This is known as method overloading. Not all programming languages support method overloading, but Python does.
+
+Related course
+Complete Python Bootcamp: Go from zero to hero in Python
+Method overloading example
+
+We create a class with one method sayHello(). The first parameter of this method is set to None, this gives us the option to call it with or without a parameter.
+
+An object is created based on the class, and we call its method using zero and one parameter.
+
+#!/usr/bin/env python
+ 
+class Human:
+ 
+    def sayHello(self, name=None):
+ 
+        if name is not None:
+            print 'Hello ' + name
+        else:
+            print 'Hello '
+ 
+# Create instance
+obj = Human()
+ 
+# Call the method
+obj.sayHello()
+ 
+# Call the method with a parameter
+obj.sayHello('Guido')
+
+Output:
+
+Hello 
+Hello Guido
+
+To clarify method overloading, we can now call the method sayHello() in two ways:
+
+obj.sayHello()
+obj.sayHello('Guido')
+
+We created a method that can be called with fewer arguments than it is defined to allow.
+
+We are not limited to two variables, your method could have more variables which are optional.
+Posted in Beginner
+method overloadingOOP
+16 thoughts on “Method overloading”
+
+    Radek
+    Log in to Reply
+    Radek Duda - June 9, 2017
+
+    Just short notice about boolean condition. It could be shortened from the form:
+
+    if name is not None:
+
+    to
+
+    if name:
+
+    Log in to Reply
+    Sadia - January 11, 2016
+
+    Dear Frank,
+    i want some help in packages. i have not found any article related to packages on this website. sorry i am posting my question in this method overloading section. I have made three packages named Data, Student and postgraduate. postgraduate is subpackage of student package. there are files : biodata.py and _init_.py in student and subjects.py and_init_.py in postgraduate respectively.
+    code in biodata.py:
+
+    class Student_Info:
+     
+        def personal_info(self,name,age,roll_no):
+            print("age is",self.name)
+            print("name is",self.age)
+            print("roll no is",self.roll_no)
+
+    code in subject.py
+
+    class Info:
+     
+        def display(self):
+            print("the subjects are")
+            print("OOP")
+            print("DBMS")
+
+    in package Data there are two files _init_.py and test.py
+    i want to access the methods of student_info and info into Data package. i mean by running Data package i could see output of these methods here. for this purpose i have written this code in test.py
+
+    import student.postgraduate
+    import student
+     
+    class Data_display:
+     
+        def method(self):
+            print("this will display data")
+     
+     
+    obj=Student_Info()
+    obj.personal_info("sadia",12,"Reg_09")
+    obj2=Info()
+    obj2.display()
+
+    i am getting error on object creation. (obj=Student_Info() and obj2=Info() . please tell me what i am doing wrong in this program.
+    thank you
+        Log in to Reply
+        Frank - January 30, 2016
+
+        Hi Sadia,you are missing some imports:
+
+        from biodata import Student_Info
+        from subject import Info
+
+        Presently an object of student_info is not given a name or age. We can set the object variables by using a constructor.
+        I’ve changed biodata.py (Student_Info) class:
+
+        class Student_Info:
+         
+            name = ""
+            age = 0
+            roll_no = 0
+         
+            def __init__(self,name,age,roll_no):
+                self.name = name
+                self.age = age
+                self.roll_no = roll_no
+         
+            def personal_info(self):
+                print("age is",self.name)
+                print("name is",self.age)
+                print("roll no is",self.roll_no)
+
+        Changed test.py to
+
+        from biodata import Student_Info
+        from subject import Info
+         
+        class Data_display:
+         
+            def method(self):
+                print("this will display data")
+         
+         
+        obj=Student_Info("sadia",12,"Reg_09")
+        obj.personal_info()
+         
+        obj2=Info()
+        obj2.display()
+
+    Log in to Reply
+    Add - November 26, 2015
+
+    Hello, how can i do that?(last command)
+
+    #!/usr/bin/env python
+     
+    class Human:
+     
+        def sayHello(self, name=None, age=None):
+     
+            if name is not None and age is None:
+                print ('Hello ' + name)
+     
+     
+            elif age is not None and age is not None:
+                print ('Hello ' + name + ' your are ' + age + ' years old !')
+            else:
+                print ('Hello ')
+     
+    # Create instance
+    obj = Human()
+     
+    # Call the method
+    obj.sayHello()
+     
+    # Call the method with a parameter
+    obj.sayHello( 'Ad', '23')
+     
+    obj.sayHello(, '23')
+
+        Log in to Reply
+        Frank - November 29, 2015
+
+        Try None for the first argument.
+            Log in to Reply
+            Harsh - December 21, 2015
+
+            it didn’t work for me by writing none for the first arguement !!
+                Log in to Reply
+                Frank - December 26, 2015
+
+                Change the function to:
+
+                    def sayHello(self, name=None, age=None):
+                        if name is not None and age is None:
+                            print ('Hello ' + name)
+                        elif name is not None and age is not None:
+                            print ('Hello ' + name + ' your are ' + str(age) + ' years old !')
+                        else:
+                            print ('Hello ')
+
+                    Log in to Reply
+                    Jatin Vamja - February 2, 2016
+
+                    try last function as following
+                    obj.sayhello(age=23)
+                        Log in to Reply
+                        Jatin Vamja - February 2, 2016
+
+                        __author__ = ‘jatin’
+                        try this i m getting output
+
+                        class Human:
+                            def sayHello(self, name=None, age=None):
+                                if name is not None and age is None:
+                                    print ('Hello ' + name)
+                                elif age is not None and name is not None:
+                                    print ('Hello ' + ' your are ' + age + ' years old !')
+                                else:
+                                    print ('Hello ')
+                         
+                        # Create instance
+                        obj = Human()
+                        # Call the method
+                        obj.sayHello()
+                        # Call the method with a parameter
+                        obj.sayHello( 'Ad', '23')
+                        obj.sayHello(age=23)
+
+    Log in to Reply
+    Kurtis - September 9, 2015
+
+    Can you have other variables in overloading besides none? Such as def sayHello(self, name=’Default User’): ?
+        Log in to Reply
+        Frank - September 9, 2015
+
+        This seems to work. Usually constant variables are defined in the local scope of the function, you could use it as default value for a parameter.
+    Log in to Reply
+    Andrew - July 25, 2015
+
+    What abou situation: we have no first argument, and have the second?
+        Frank
+        Log in to Reply
+        Frank - July 25, 2015
+
+        Hi Andrew, you could pass the first parameter as None. An alternative would be to pass an instance of a class (an object) to a method, which is what I recommend if you want to pass a lot of variables.
+            Log in to Reply
+            Andrew - September 9, 2015
+
+            Thank you. It looks easier)
+    Log in to Reply
+    Christian Ransom - July 24, 2015
+
+    So to clarify, if no argument is given for the second parameter, the second parameter will be set to None?
+        Frank
+        Log in to Reply
+        Frank - July 24, 2015
+
+        Yes, if no parameter is given it will be set to None. There is no limit to the number of parameters you pass.
+        You could have a method that accepts multiple parameters:
+
+        #!/usr/bin/env python
+         
+        class Human:
+         
+            def sayHello(self, name=None, age=None):
+         
+                if name is not None:
+                    print 'Hello ' + name
+                else:
+                    print 'Hello '
+         
+                if age is not None:
+                    print 'Age = ' + str(age)
+         
+        # Create instance
+        obj = Human()
+         
+        # Call the method
+        obj.sayHello()
+         
+        # Call the method with a parameter
+        obj.sayHello('Guido')
+         
+        # Call with two parameters
+        obj.sayHello('Guido',18)
+
+Leave a Reply
+
+You must be logged in to post a comment.
+Login with:
+Login with google
+Login with twitter
+Login with facebook
+     
+Search for:
+Beginner
+Graphical Interfaces (GUI)
+Web development
+Database
+Robotics
+Matplotlib
+Network
+Machine Learning
+Copyright © 2017 Pythonspot | Cookie policy | Terms of use | Privacy policy
+
+This website makes use of cookies to enhance browsing experience and provide additional functionality. Details
+Allow cookies
+
